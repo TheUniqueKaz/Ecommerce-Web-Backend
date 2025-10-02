@@ -44,12 +44,13 @@ public class Address {
     private String country;
 
     @NotBlank
-    @Size(min = 6, message = "Pin code must be at least 5 characters")
+    @Size(min = 5, message = "Pin code must be at least 5 characters")
     private String pinCode;
 
-    @ToString.Exclude
-    @ManyToMany(mappedBy = "addresses")
-    private List<User> users = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User users;
 
 
     public Address(String street, String buildingName, String cityName, String stateName, String country, String pinCode) {
